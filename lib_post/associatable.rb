@@ -85,6 +85,7 @@ module Associatable
   private
 
   def through_query(through_name, source_name)
+    debugger
     through_options = self.class.assoc_options[through_name]
     source_options = through_options.model_class.assoc_options[source_name.to_sym]
 
