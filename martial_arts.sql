@@ -1,9 +1,9 @@
-CREATE TABLE signature_techniques (
+CREATE TABLE signaturetechniques (
   id INTEGER PRIMARY KEY,
   technique VARCHAR(255) NOT NULL,
-  owner_id INTEGER,
+  practitioner_id INTEGER,
 
-  FOREIGN KEY(owner_id) REFERENCES practitioner(id)
+  FOREIGN KEY(practitioner_id) REFERENCES practitioner(id)
 );
 
 CREATE TABLE practitioners (
@@ -36,7 +36,7 @@ VALUES
   (4, "'Sugar' Ray", "Robinson", 3);
 
 INSERT INTO
-  signature_techniques (id, technique, owner_id)
+  signaturetechniques (id, technique, practitioner_id)
 VALUES
   (1, "Arm drag", 1),
   (2, "Triangle choke", 2),

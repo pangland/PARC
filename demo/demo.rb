@@ -7,17 +7,17 @@ DBConnection.reset
 
 class Style < SQLObject
   has_many :practitioners
-  has_one_through :signature_technique, :practitioner, :signature_techniques
+  has_one_through :signaturetechnique, :practitioner, :signaturetechnique
   self.finalize!
 end
 
 class Practitioner < SQLObject
   belongs_to :style
-  has_many :signature_techniques
+  has_many :signaturetechniques
   self.finalize!
 end
 
-class SignatureTechnique < SQLObject
-  belongs_to :practitioner, foreign_key: :owner_id
+class Signaturetechnique < SQLObject
+  belongs_to :practitioner, foreign_key: :practitioner_id
   self.finalize!
 end
