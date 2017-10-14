@@ -1,5 +1,6 @@
 require_relative 'searchable'
 require 'active_support/inflector'
+require 'byebug'
 
 class AssocOptions
   attr_accessor(
@@ -9,11 +10,11 @@ class AssocOptions
   )
 
   def model_class
-    @class_name.constantize
+    @class_name.to_s.constantize
   end
 
   def table_name
-    @class_name.constantize.table_name
+    @class_name.to_s.constantize.table_name
   end
 end
 
@@ -68,28 +69,16 @@ module Associatable
   end
 
   def has_one_through(name, through_name, source_name)
+    debugger
     define_method(name) do
-      through_options = self.class.assoc_options[through_name]
-      source_options = through_options.model_class.assoc_options[source_name]
+      debugger
+      through_query(through_name, source_name).first
+    end
+  end
 
-      through_table = through_options.table_name
-      source_table = source_options.table_name
-
-      source_fkey = source_options.foreign_key
-      source_pkey = source_options.primary_key
-
-      through_pkey = through_options.primary_key
-      through_fkey_val = self.send(through_options.foreign_key).to_s
-
-      blah = DBConnection.execute(<<-SQL,)
-        SELECT #{source_table}.*
-        FROM #{through_table}
-        JOIN #{source_table}
-        ON #{through_table}.#{source_fkey} = #{source_table}.#{source_pkey}
-        WHERE #{through_table}.#{through_pkey} = #{through_fkey_val}
-      SQL
-
-      source_options.model_class.parse_all(blah).first
+  def has_many_through(name, through_name, source_name)
+    define_method(name) do
+      through_query(through_name, source_name)
     end
   end
 
@@ -97,7 +86,7 @@ module Associatable
 
   def through_query(through_name, source_name)
     through_options = self.class.assoc_options[through_name]
-    source_options = through_options.model_class.assoc_options[source_name]
+    source_options = through_options.model_class.assoc_options[source_name.to_sym]
 
     through_table = through_options.table_name
     source_table = source_options.table_name
@@ -108,13 +97,15 @@ module Associatable
     through_pkey = through_options.primary_key
     through_fkey_val = self.send(through_options.foreign_key).to_s
 
-    DBConnection.execute(<<-SQL,)
+    query = DBConnection.execute(<<-SQL,)
       SELECT #{source_table}.*
       FROM #{through_table}
       JOIN #{source_table}
       ON #{through_table}.#{source_fkey} = #{source_table}.#{source_pkey}
       WHERE #{through_table}.#{through_pkey} = #{through_fkey_val}
     SQL
+
+    source_options.model_class.parse_all(query)
   end
 end
 

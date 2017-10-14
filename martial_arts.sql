@@ -1,9 +1,9 @@
 CREATE TABLE signaturetechniques (
   id INTEGER PRIMARY KEY,
   technique VARCHAR(255) NOT NULL,
-  practitioner_id INTEGER,
+  style_id INTEGER,
 
-  FOREIGN KEY(practitioner_id) REFERENCES practitioner(id)
+  FOREIGN KEY(style_id) REFERENCES style(id)
 );
 
 CREATE TABLE practitioners (
@@ -36,10 +36,10 @@ VALUES
   (4, "'Sugar' Ray", "Robinson", 3);
 
 INSERT INTO
-  signaturetechniques (id, technique, practitioner_id)
+  signaturetechniques (id, technique, style_id)
 VALUES
   (1, "Arm drag", 1),
-  (2, "Triangle choke", 2),
-  (3, "Side kick to knee", 3),
-  (4, "Swining nunchucks around while shouting like a mad man", 3),
-  (5, "Left hook", 4);
+  (2, "Triangle choke", 1),
+  (3, "Side kick to knee", 2),
+  (4, "Swining nunchucks around while shouting like a mad man", 2),
+  (5, "Left hook", 3);
