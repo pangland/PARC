@@ -1,7 +1,8 @@
 require_relative 'db_connection'
 require 'active_support/inflector'
 require 'byebug'
-require 'active_support/inflector'
+require_relative 'searchable'
+require_relative 'associatable'
 
 class SQLObject
   def self.columns
