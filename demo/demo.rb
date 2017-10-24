@@ -1,5 +1,5 @@
-require_relative '../lib_post/sql_object'
-require_relative '../lib_post/db_connection'
+require_relative '../lib/sql_object'
+require_relative '../lib/db_connection'
 require 'sqlite3'
 require 'byebug'
 

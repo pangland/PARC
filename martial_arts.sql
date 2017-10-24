@@ -28,7 +28,7 @@ INSERT INTO
 VALUES
   (1, "Brazilian Jiu Jitsu", 2),
   (2, "Jeet Kun Do", 3),
-  (3, "Boxing", 1);
+  (3, "Boxing", 5);
 
 INSERT INTO
   practitioners (id, fname, lname, style_id)
@@ -36,7 +36,8 @@ VALUES
   (1, "Marcelo", "Garcia", 1),
   (2, "Helio", "Gracie", 1),
   (3, "Bruce", "Lee", 2),
-  (4, "'Sugar' Ray", "Robinson", 3);
+  (4, "'Sugar' Ray", "Robinson", 3),
+  (5, "Boxing", "McBoxington", 3);
 
 INSERT INTO
   signaturetechniques (id, technique, style_id)
