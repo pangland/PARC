@@ -18,23 +18,23 @@ CREATE TABLE practitioners (
 CREATE TABLE styles (
   id INTEGER PRIMARY KEY,
   style VARCHAR(255) NOT NULL,
-  founder_id INTEGER,
+  grandmaster_id INTEGER,
 
-  FOREIGN KEY(founder_id) REFERENCES practitioner(id)
+  FOREIGN KEY(grandmaster_id) REFERENCES practitioner(id)
 );
 
 INSERT INTO
-  styles (id, style, founder_id)
+  styles (id, style, grandmaster_id)
 VALUES
-  (1, "Brazilian Jiu Jitsu", 1),
-  (2, "Jeet Kun Do", 1),
+  (1, "Brazilian Jiu Jitsu", 2),
+  (2, "Jeet Kun Do", 3),
   (3, "Boxing", 1);
 
 INSERT INTO
   practitioners (id, fname, lname, style_id)
 VALUES
   (1, "Marcelo", "Garcia", 1),
-  (2, "Demian", "Maia", 1),
+  (2, "Helio", "Gracie", 1),
   (3, "Bruce", "Lee", 2),
   (4, "'Sugar' Ray", "Robinson", 3);
 
