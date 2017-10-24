@@ -46,6 +46,15 @@ class SQLObject
     self.parse_all(hashes)
   end
 
+  def self.first
+    hashes = DBConnection.execute(<<-SQL)
+      SELECT *
+      FROM "#{self.table_name}"
+    SQL
+
+    hashes.first
+  end
+
   def self.parse_all(results)
     final_answer = []
     results.each do |result|
