@@ -1,6 +1,5 @@
 require_relative 'searchable'
 require 'active_support/inflector'
-require 'byebug'
 
 class AssocOptions
   attr_accessor(
@@ -69,9 +68,7 @@ module Associatable
   end
 
   def has_one_through(name, through_name, source_name)
-    debugger
     define_method(name) do
-      debugger
       through_query(through_name, source_name).first
     end
   end
@@ -85,7 +82,6 @@ module Associatable
   private
 
   def through_query(through_name, source_name)
-    debugger
     through_options = self.class.assoc_options[through_name]
     source_options = through_options.model_class.assoc_options[source_name.to_sym]
 

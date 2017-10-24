@@ -1,3 +1,8 @@
+CREATE TABLE types (
+  id INTEGER PRIMARY KEY,
+  type VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE signaturetechniques (
   id INTEGER PRIMARY KEY,
   technique VARCHAR(255) NOT NULL,
@@ -19,16 +24,25 @@ CREATE TABLE styles (
   id INTEGER PRIMARY KEY,
   style VARCHAR(255) NOT NULL,
   grandmaster_id INTEGER,
+  type_id INTEGER,
 
-  FOREIGN KEY(grandmaster_id) REFERENCES practitioner(id)
+  FOREIGN KEY(grandmaster_id) REFERENCES practitioner(id),
+  FOREIGN KEY(type_id) REFERENCES type(id)
 );
 
 INSERT INTO
-  styles (id, style, grandmaster_id)
+  types (id, type)
 VALUES
-  (1, "Brazilian Jiu Jitsu", 2),
-  (2, "Jeet Kun Do", 3),
-  (3, "Boxing", 5);
+  (1, 'Grappling'),
+  (2, 'Striking'),
+  (3, 'Mixed');
+
+INSERT INTO
+  styles (id, style, grandmaster_id, type_id)
+VALUES
+  (1, "Brazilian Jiu Jitsu", 2, 1),
+  (2, "Jeet Kun Do", 3, 3),
+  (3, "Boxing", 5, 2);
 
 INSERT INTO
   practitioners (id, fname, lname, style_id)

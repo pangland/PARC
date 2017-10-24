@@ -1,9 +1,14 @@
 require_relative '../lib/sql_object'
 require_relative '../lib/db_connection'
 require 'sqlite3'
-require 'byebug'
 
 DBConnection.reset
+
+class Type < SQLObject
+  has_many :styles
+  has_many_through 'practitioner', :style, 'practitioner'
+  self.finalize!
+end
 
 class Style < SQLObject
   has_many :practitioners
