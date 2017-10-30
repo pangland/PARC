@@ -52,7 +52,7 @@ class SQLObject
       FROM "#{self.table_name}"
     SQL
 
-    hashes.first
+    self.parse_all(hashes).first
   end
 
   def self.last
@@ -61,7 +61,7 @@ class SQLObject
       FROM "#{self.table_name}"
     SQL
 
-    hashes.last
+    self.parse_all(hashes).last
   end
 
   def self.parse_all(results)

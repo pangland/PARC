@@ -6,7 +6,7 @@ DBConnection.reset
 
 class Type < SQLObject
   has_many :styles
-  has_many_through 'practitioner', :style, 'practitioner'
+  has_many_through 'practitioners', :style, 'practitioners'
   self.finalize!
 end
 
