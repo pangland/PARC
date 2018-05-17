@@ -1,6 +1,6 @@
-# PORM (Paul's object-relational mapping)
+# PARC (Paul's ActiveRecord Clone)
 ---
-PORM is an ActiveRecord-inspired lightweight library that allows for updates and associations to be made in a SQLite3 database without writing much SQL.
+PARC is an ActiveRecord-inspired lightweight library that allows for updates and associations to be made in a SQLite3 database without writing much SQL.
 
 ## Instructions
 ---
